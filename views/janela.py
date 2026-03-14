@@ -3,7 +3,7 @@ import customtkinter as ctk
 
 janela = ctk.CTk()
 janela.title("Checklist Cargas")
-janela.geometry("800x540")
+janela.geometry("855x540")
 janela.resizable(False, False)
 
 ctk.set_appearance_mode("Dark")
