@@ -17,8 +17,7 @@ if __name__ == "__main__":
 
     janela.grid_rowconfigure(0, weight=1)
     janela.grid_columnconfigure(0, weight=1)
-
-    # view.place(relx=0, rely=0, relwidth=1, relheight=1)
+    
     view.grid(row=0, column=0, sticky="nsew")
     
     janela.mainloop()
