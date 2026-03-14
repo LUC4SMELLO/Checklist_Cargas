@@ -97,6 +97,8 @@ class ChecklistController:
             )
 
             if escolha == "Sim":
+                dados = self.coletar_dados(frame)
+                self.model.inserir_carga_concluida(dados)
                 self.remover_carga(frame)
             else:
                 frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
