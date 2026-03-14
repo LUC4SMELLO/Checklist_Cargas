@@ -65,12 +65,12 @@ class ChecklistView(ctk.CTkFrame):
         self.toolbar_frame.grid_rowconfigure(0, weight=0)
         self.toolbar_frame.grid_rowconfigure(1, weight=0)
         self.toolbar_frame.grid_rowconfigure(2, weight=0)
-        self.toolbar_frame.grid_columnconfigure(0, weight=0)
-        self.toolbar_frame.grid_columnconfigure(1, weight=0)
-        self.toolbar_frame.grid_columnconfigure(2, weight=0)
-        self.toolbar_frame.grid_columnconfigure(3, weight=0)
-        self.toolbar_frame.grid_columnconfigure(4, weight=1)
-        self.toolbar_frame.grid_columnconfigure(5, weight=0)
+        self.toolbar_frame.grid_columnconfigure(0, minsize=140) # LABEL
+        self.toolbar_frame.grid_columnconfigure(1, minsize=110) # ENTRY
+        self.toolbar_frame.grid_columnconfigure(2, minsize=40)  # BOTÃO
+        self.toolbar_frame.grid_columnconfigure(3, minsize=0)   # VAZIO
+        self.toolbar_frame.grid_columnconfigure(4, weight=1)    # COLUNA FLEXÍVEL
+        self.toolbar_frame.grid_columnconfigure(5, minsize=200) # DATA
         self.toolbar_frame.grid(row=1, column=0, sticky="ew")
 
         ctk.CTkLabel(self.toolbar_frame, text="Número Carga:", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=0, padx=(40, 0), pady=(15, 0), sticky="e")
@@ -93,7 +93,7 @@ class ChecklistView(ctk.CTkFrame):
             hover_color=COR_HOVER_BOTAO,
             cursor="hand2"
         )
-        self.botao_adicionar_carga.grid(row=0, column=3, padx=(5, 0), pady=(15, 0), sticky="w")
+        self.botao_adicionar_carga.grid(row=0, column=2, padx=(5, 0), pady=(15, 0), sticky="w")
 
         self.label_data = ctk.CTkLabel(self.toolbar_frame, text="Data Faturar: 16/03/2026", font=FONTE_LABEL, text_color=COR_TEXTO)
         self.label_data.grid(row=0, column=5, padx=(0, 40), pady=(15, 0))

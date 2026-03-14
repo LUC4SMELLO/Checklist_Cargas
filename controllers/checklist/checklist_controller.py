@@ -90,8 +90,8 @@ class ChecklistController:
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS_CONCLUIDO)
 
             escolha = exibir_mensagem(
-                "Finalizar?",
-                "Deseja finalizar a carga?",
+                "Concluir?",
+                "Deseja concluir a carga?",
                 "info",
                 opcao_1="Sim",
                 opcao_2="Não"
@@ -148,8 +148,12 @@ class ChecklistController:
         tab_selecionada = botao_clicado.cget("text")
         if tab_selecionada == "Pendentes":
             self.inicializar_cargas(cargas="pendentes")
+            self.view.entry_numero_carga.configure(state="normal")
+            self.view.botao_adicionar_carga.configure(state="normal")
         else:
             self.inicializar_cargas(cargas="concluidas")
+            self.view.entry_numero_carga.configure(state="readonly")
+            self.view.botao_adicionar_carga.configure(state="disabled")
 
 
 
@@ -176,6 +180,13 @@ class ChecklistController:
 
         if cargas == "concluidas":
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS_CONCLUIDO)
+            frame.check_nota_fiscal.configure(state="disabled")
+            frame.check_boleto.configure(state="disabled")
+            frame.check_acerto.configure(state="disabled")
+            frame.check_mapa.configure(state="disabled")
+            frame.check_troca.configure(state="disabled")
+            frame.check_problema.configure(state="disabled")
+            frame.botao_remover_carga.grid_forget()
 
         frame.label_carga.configure(text=dados["numero_carga"])
 
@@ -184,5 +195,6 @@ class ChecklistController:
         frame.check_acerto_var.set(dados["acerto"])
         frame.check_mapa_var.set(dados["mapa"])
         frame.check_troca_var.set(dados["troca"])
+        frame.check_problema_var.set(dados["problema"])
         
         self.atualizar_numero_total_cargas()
