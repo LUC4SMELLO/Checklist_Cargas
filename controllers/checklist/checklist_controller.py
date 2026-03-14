@@ -1,6 +1,7 @@
 import customtkinter as ctk
 
-from datetime import datetime
+from datetime import datetime, timedelta
+import holidays
 
 from views.checklist.components.frame_carga import FrameCarga
 
@@ -81,8 +82,7 @@ class ChecklistController:
             frame.check_boleto_var.get(),
             frame.check_acerto_var.get(),
             frame.check_mapa_var.get(),
-            frame.check_troca_var.get(),
-            frame.check_problema_var.get()
+            frame.check_troca_var.get()
         ]
 
         if all(checkboxes):
@@ -120,6 +120,20 @@ class ChecklistController:
         self.view.frames_carga.clear()
         for widget in self.view.container_cargas.winfo_children():
             widget.destroy()
+
+
+    def obter_proximo_dia_util(self):
+        feriados_br = holidays.BR()
+
+        data_atual = datetime.now().date()
+        proximo_dia = data_atual + timedelta(days=1)
+        
+        # ENQUANTO FOR FINAL DE SEMANA (SÁB=5 DOM=6) OU FERIADO, PULA +1 DIA
+        while proximo_dia.weekday() >= 5 or proximo_dia in feriados_br:
+            proximo_dia += timedelta(days=1)
+            
+        data_formatada = proximo_dia.strftime("%d/%m/%Y")
+        self.view.label_data.configure(text=f"Data Faturamento: {data_formatada}")
 
 
 

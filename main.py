@@ -13,11 +13,12 @@ if __name__ == "__main__":
     view = ChecklistView(janela, controller)
 
     controller.set_view(view)
+    controller.obter_proximo_dia_util()
     controller.inicializar_cargas()
 
     janela.grid_rowconfigure(0, weight=1)
     janela.grid_columnconfigure(0, weight=1)
-    
+
     view.grid(row=0, column=0, sticky="nsew")
     
     janela.mainloop()

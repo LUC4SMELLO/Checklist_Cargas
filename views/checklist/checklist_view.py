@@ -67,7 +67,9 @@ class ChecklistView(ctk.CTkFrame):
         self.toolbar_frame.grid_columnconfigure(0, weight=0)
         self.toolbar_frame.grid_columnconfigure(1, weight=0)
         self.toolbar_frame.grid_columnconfigure(2, weight=0)
-        self.toolbar_frame.grid_columnconfigure(3, weight=1)
+        self.toolbar_frame.grid_columnconfigure(3, weight=0)
+        self.toolbar_frame.grid_columnconfigure(4, weight=1)
+        self.toolbar_frame.grid_columnconfigure(5, weight=0)
         self.toolbar_frame.grid(row=1, column=0, sticky="ew")
 
         ctk.CTkLabel(self.toolbar_frame, text="Número Carga:", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=0, padx=(40, 0), pady=(15, 0), sticky="e")
@@ -92,8 +94,11 @@ class ChecklistView(ctk.CTkFrame):
         )
         self.botao_adicionar_carga.grid(row=0, column=3, padx=(5, 0), pady=(15, 0), sticky="w")
 
+        self.label_data = ctk.CTkLabel(self.toolbar_frame, text="Data Faturar: 16/03/2026", font=FONTE_LABEL, text_color=COR_TEXTO)
+        self.label_data.grid(row=0, column=5, padx=(0, 40), pady=(15, 0))
 
-        ctk.CTkFrame(self.toolbar_frame, height=2, fg_color=COR_LINHAS).grid(row=1, column=0, padx=(20, 20), pady=(15, 0), sticky="ew", columnspan=4)
+
+        ctk.CTkFrame(self.toolbar_frame, height=2, fg_color=COR_LINHAS).grid(row=1, column=0, padx=(20, 20), pady=(15, 0), sticky="ew", columnspan=6)
 
 
         self.cargas_header = ctk.CTkFrame(self.main_frame, fg_color="transparent")
