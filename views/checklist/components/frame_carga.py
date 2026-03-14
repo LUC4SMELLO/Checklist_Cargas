@@ -8,7 +8,7 @@ from constants.textos import FONTE_LABEL, FONTE_TEXTO
 from constants.cores import (
     COR_TEXTO,
     COR_BOTAO,
-    HOVER_BOTAO,
+    COR_HOVER_BOTAO,
     COR_FUNDO_FRAME_CARGAS
 )
 
@@ -39,7 +39,7 @@ class FrameCarga(ctk.CTkFrame):
             onvalue=1,
             offvalue=0,
             fg_color="green",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             border_color="gray",
             )
         self.check_nota_fiscal.grid(row=0, column=1, padx=(60, 0), pady=(0, 0))
@@ -53,7 +53,7 @@ class FrameCarga(ctk.CTkFrame):
             onvalue=1,
             offvalue=0,
             fg_color="green",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             border_color="gray",
             )
         self.check_boleto.grid(row=0, column=2, padx=(10, 0), pady=(0, 0))
@@ -68,7 +68,7 @@ class FrameCarga(ctk.CTkFrame):
             onvalue=1,
             offvalue=0,
             fg_color="green",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             border_color="gray",
             )
         self.check_acerto.grid(row=0, column=3, padx=(0, 0), pady=(0, 0))
@@ -82,7 +82,7 @@ class FrameCarga(ctk.CTkFrame):
             onvalue=1,
             offvalue=0,
             fg_color="green",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             border_color="gray",
             )
         self.check_mapa.grid(row=0, column=4, padx=(0, 0), pady=(0, 0))
@@ -96,7 +96,7 @@ class FrameCarga(ctk.CTkFrame):
             onvalue=1,
             offvalue=0,
             fg_color="green",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             border_color="gray",
             )
         self.check_troca.grid(row=0, column=5, padx=(0, 0), pady=(0, 0))
@@ -110,7 +110,7 @@ class FrameCarga(ctk.CTkFrame):
             onvalue=1,
             offvalue=0,
             fg_color="green",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             border_color="gray",
             )
         self.check_problema.grid(row=0, column=6, padx=(0, 0), pady=(0, 0))
@@ -128,7 +128,7 @@ class FrameCarga(ctk.CTkFrame):
             width=20,
             height=20,
             fg_color="transparent",
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             cursor="hand2",
         )
         self.botao_remover_carga.grid(row=0, column=7, padx=(0, 0), pady=(0, 0))

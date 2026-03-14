@@ -2,7 +2,7 @@ from CTkMessagebox import CTkMessagebox
 from typing import Literal
 
 from constants.textos import FONTE_TEXTO
-from constants.cores import COR_TEXTO, COR_BOTAO, COR_TEXTO_BOTAO, HOVER_BOTAO
+from constants.cores import COR_TEXTO, COR_BOTAO, COR_TEXTO_BOTAO, COR_HOVER_BOTAO
 
 
 def exibir_mensagem(
@@ -44,7 +44,7 @@ def exibir_mensagem(
         button_color=COR_BOTAO,
         cancel_button_color=COR_BOTAO,
         button_text_color=COR_TEXTO_BOTAO,
-        button_hover_color=HOVER_BOTAO,
+        button_hover_color=COR_HOVER_BOTAO,
         option_1=opcao_1,
         option_2=opcao_2,
         option_3=opcao_3,
