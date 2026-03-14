@@ -18,7 +18,8 @@ from constants.textos import (
 
 from constants.cores import (
     COR_BOTAO,
-    HOVER_BOTAO,
+    COR_BOTAO_SELECIONADO,
+    COR_HOVER_BOTAO,
     COR_TEXTO,
     COR_TEXTO_BOTAO,
     COR_LINHAS,
@@ -89,7 +90,7 @@ class ChecklistView(ctk.CTkFrame):
             width=20,
             height=30,
             fg_color=COR_BOTAO,
-            hover_color=HOVER_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
             cursor="hand2"
         )
         self.botao_adicionar_carga.grid(row=0, column=3, padx=(5, 0), pady=(15, 0), sticky="w")
@@ -97,8 +98,38 @@ class ChecklistView(ctk.CTkFrame):
         self.label_data = ctk.CTkLabel(self.toolbar_frame, text="Data Faturar: 16/03/2026", font=FONTE_LABEL, text_color=COR_TEXTO)
         self.label_data.grid(row=0, column=5, padx=(0, 40), pady=(15, 0))
 
-
         ctk.CTkFrame(self.toolbar_frame, height=2, fg_color=COR_LINHAS).grid(row=1, column=0, padx=(20, 20), pady=(15, 0), sticky="ew", columnspan=6)
+
+        self.tabs_frame = ctk.CTkFrame(self.toolbar_frame, fg_color="transparent", height=30)
+        self.tabs_frame.grid(row=1, column=0, padx=(40, 0), pady=(15, 0), columnspan=4)
+
+        ctk.CTkFrame(self.tabs_frame, height=2, fg_color=COR_LINHAS).grid(row=0, column=0, padx=(20, 20), pady=(0, 0), sticky="ew", columnspan=6)
+
+        self.botao_cargas_pendentes = ctk.CTkButton(
+            self.tabs_frame,
+            text="Pendentes",
+            command= lambda: controller.selecionar_tab(self.botao_cargas_pendentes),
+            font=FONTE_BOTAO_SECUNDARIO,
+            text_color=COR_TEXTO,
+            fg_color=COR_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
+            width=136
+            )
+        self.botao_cargas_pendentes.configure(fg_color=COR_BOTAO_SELECIONADO)
+        self.botao_cargas_pendentes.grid(row=0, column=0)
+
+        self.botao_cargas_concluidas = ctk.CTkButton(
+            self.tabs_frame,
+            text="Concluídas",
+            command= lambda: controller.selecionar_tab(self.botao_cargas_concluidas),
+            font=FONTE_BOTAO_SECUNDARIO,
+            text_color=COR_TEXTO,
+            fg_color=COR_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
+            width=136
+            )
+        self.botao_cargas_concluidas.grid(row=0, column=1, padx=(5, 0))
+
 
 
         self.cargas_header = ctk.CTkFrame(self.main_frame, fg_color="transparent")
@@ -125,7 +156,7 @@ class ChecklistView(ctk.CTkFrame):
         self.container_cargas = ctk.CTkScrollableFrame(
             self.main_frame,
             fg_color=COR_FUNDO_CONTAINER_CARGAS,
-            height=320
+            height=290
         )
         self.container_cargas.grid_columnconfigure(0, weight=1)
         self.container_cargas.grid_columnconfigure(1, weight=0)

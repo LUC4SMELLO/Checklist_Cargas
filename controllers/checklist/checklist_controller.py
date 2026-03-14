@@ -9,7 +9,7 @@ from validators.checklist.checklist_validator import validar_checklist
 
 from views.dialogs.exibir_mensagem import exibir_mensagem
 
-from constants.cores import COR_FUNDO_FRAME_CARGAS, COR_FUNDO_FRAME_CARGAS_CONCLUIDO
+from constants.cores import COR_BOTAO, COR_BOTAO_SELECIONADO, COR_FUNDO_FRAME_CARGAS, COR_FUNDO_FRAME_CARGAS_CONCLUIDO
 
 class ChecklistController:
     def __init__(self, model):
@@ -134,6 +134,14 @@ class ChecklistController:
             
         data_formatada = proximo_dia.strftime("%d/%m/%Y")
         self.view.label_data.configure(text=f"Data Faturamento: {data_formatada}")
+
+
+    def selecionar_tab(self, botao_clicado):
+    
+        for botao in [self.view.botao_cargas_pendentes, self.view.botao_cargas_concluidas]:
+            botao.configure(fg_color=COR_BOTAO)
+
+        botao_clicado.configure(fg_color=COR_BOTAO_SELECIONADO)
 
 
 
