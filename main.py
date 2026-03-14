@@ -14,7 +14,7 @@ if __name__ == "__main__":
 
     controller.set_view(view)
     controller.obter_proximo_dia_util()
-    controller.inicializar_cargas()
+    controller.inicializar_cargas(cargas="pendentes")
 
     janela.grid_rowconfigure(0, weight=1)
     janela.grid_columnconfigure(0, weight=1)

@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from typing import Literal
 
 from datetime import datetime, timedelta
 import holidays
@@ -109,7 +110,6 @@ class ChecklistController:
         else:
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
 
-
     def atualizar_numero_total_cargas(self):
         quantidade_cargas = len(self.view.frames_carga)
         self.view.label_total_cargas.configure(text=f"Total: {quantidade_cargas}")
@@ -145,23 +145,37 @@ class ChecklistController:
 
         botao_clicado.configure(fg_color=COR_BOTAO_SELECIONADO)
 
+        tab_selecionada = botao_clicado.cget("text")
+        if tab_selecionada == "Pendentes":
+            self.inicializar_cargas(cargas="pendentes")
+        else:
+            self.inicializar_cargas(cargas="concluidas")
+
 
 
     # -------------------------------------
     #     CARREGAMENTO CARGAS PENDENTES
     # -------------------------------------
 
-    def inicializar_cargas(self):
+    def inicializar_cargas(self, cargas: Literal["pendentes", "concluidas"]):
         self.limpar_container_cargas()
 
-        registros = self.model.carregar_cargas_pendentes()
+        if cargas == "pendentes":
+            registros = self.model.carregar_cargas_pendentes()
+        else:
+            registros = self.model.carregar_cargas_concluidas()
 
         if registros:
             for dados in registros:
                 frame = self.view.criar_frame_carga()
-                self._preencher_frame(frame, dados)
+                self._preencher_frame(frame, dados, cargas)
+        
+        self.atualizar_numero_total_cargas()
     
-    def _preencher_frame(self, frame, dados):
+    def _preencher_frame(self, frame, dados, cargas):
+
+        if cargas == "concluidas":
+            frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS_CONCLUIDO)
 
         frame.label_carga.configure(text=dados["numero_carga"])
 
