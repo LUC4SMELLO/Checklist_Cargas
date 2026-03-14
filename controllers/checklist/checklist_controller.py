@@ -29,7 +29,8 @@ class ChecklistController:
             "boleto": frame.check_boleto_var.get(),
             "acerto": frame.check_acerto_var.get(),
             "mapa": frame.check_mapa_var.get(),
-            "troca": frame.check_troca_var.get()
+            "troca": frame.check_troca_var.get(),
+            "problema": frame.check_problema_var.get()
         }
 
         return dados
@@ -81,6 +82,7 @@ class ChecklistController:
             frame.check_acerto_var.get(),
             frame.check_mapa_var.get(),
             frame.check_troca_var.get(),
+            frame.check_problema_var.get()
         ]
 
         if all(checkboxes):

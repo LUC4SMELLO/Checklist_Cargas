@@ -22,9 +22,10 @@ class ChecklistModel:
                 boleto,
                 acerto,
                 mapa,
-                troca
+                troca,
+                problema
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                     (
                         dados["data"],
@@ -33,7 +34,8 @@ class ChecklistModel:
                         dados["boleto"],
                         dados["acerto"],
                         dados["mapa"],
-                        dados["troca"]
+                        dados["troca"],
+                        dados["problema"]
                     )
             )
 
@@ -61,7 +63,8 @@ class ChecklistModel:
                 boleto = ?,
                 acerto = ?,
                 mapa = ?,
-                troca = ?
+                troca = ?,
+                problema = ?
                 WHERE numero_carga = ?
                 """,
                     (
@@ -70,6 +73,7 @@ class ChecklistModel:
                         dados["acerto"],
                         dados["mapa"],
                         dados["troca"],
+                        dados["problema"],
                         dados["numero_carga"]
                     )
             )
@@ -126,7 +130,8 @@ class ChecklistModel:
                     boleto,
                     acerto,
                     mapa,
-                    troca
+                    troca,
+                    problema
                 FROM {TABELA_CARGAS_PENDENTES}
                 """
             )

@@ -20,7 +20,8 @@ def criar_tabela_cargas_pendentes():
         boleto VARCHAR(1),
         acerto VARCHAR(1),
         mapa VARCHAR(1),
-        troca VARCHAR(1)
+        troca VARCHAR(1),
+        problema VARCHAR(1)
         )
         """
     )
