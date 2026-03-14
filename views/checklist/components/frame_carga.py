@@ -101,6 +101,20 @@ class FrameCarga(ctk.CTkFrame):
             )
         self.check_troca.grid(row=0, column=5, padx=(0, 0), pady=(0, 0))
 
+        self.check_problema_var = ctk.IntVar(value=0)
+        self.check_problema = ctk.CTkCheckBox(
+            self,
+            text="",
+            command=lambda: controller.checkbox_event(self, self.check_problema_var),
+            variable=self.check_problema_var,
+            onvalue=1,
+            offvalue=0,
+            fg_color="green",
+            hover_color=HOVER_BOTAO,
+            border_color="gray",
+            )
+        self.check_problema.grid(row=0, column=6, padx=(0, 0), pady=(0, 0))
+
         self.icone_lixeira = ctk.CTkImage(
             light_image=Image.open(ICONS_DIR / "lixeira_dark.png"),
             dark_image=Image.open(ICONS_DIR / "lixeira_dark.png"),
@@ -117,4 +131,4 @@ class FrameCarga(ctk.CTkFrame):
             hover_color=HOVER_BOTAO,
             cursor="hand2",
         )
-        self.botao_remover_carga.grid(row=0, column=6, padx=(0, 20), pady=(0, 0))
+        self.botao_remover_carga.grid(row=0, column=7, padx=(0, 0), pady=(0, 0))

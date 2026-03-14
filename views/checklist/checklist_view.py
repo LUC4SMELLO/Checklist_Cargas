@@ -106,6 +106,7 @@ class ChecklistView(ctk.CTkFrame):
         self.cargas_header.grid_columnconfigure(4, minsize=20)
         self.cargas_header.grid_columnconfigure(5, minsize=20)
         self.cargas_header.grid_columnconfigure(6, minsize=20)
+        self.cargas_header.grid_columnconfigure(7, minsize=20)
 
         ctk.CTkLabel(self.cargas_header, text="Carga", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=0, padx=(40, 0), pady=(25, 0))
         ctk.CTkLabel(self.cargas_header, text="Nota Fiscal", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=1, padx=(40, 0), pady=(25, 0))
@@ -113,7 +114,8 @@ class ChecklistView(ctk.CTkFrame):
         ctk.CTkLabel(self.cargas_header, text="Acerto", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=3, padx=(45, 0), pady=(25, 0))
         ctk.CTkLabel(self.cargas_header, text="Mapa", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=4, padx=(50, 0), pady=(25, 0))
         ctk.CTkLabel(self.cargas_header, text="Troca", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=5, padx=(60, 0), pady=(25, 0))
-        ctk.CTkLabel(self.cargas_header, text="", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=6, padx=(40, 0), pady=(25, 0))
+        ctk.CTkLabel(self.cargas_header, text="Problema", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=6, padx=(40, 0), pady=(25, 0))
+        ctk.CTkLabel(self.cargas_header, text="", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=7, padx=(40, 0), pady=(25, 0))
 
         self.container_cargas = ctk.CTkScrollableFrame(
             self.main_frame,
