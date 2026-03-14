@@ -71,7 +71,10 @@ class ChecklistController:
         self.verificar_checkbox(frame, checkbox_var)
 
     def verificar_checkbox(self, frame, checkbox_var):
-        
+
+        dados = self.coletar_dados(frame)
+        self.model.editar_carga_pendente(dados)
+
         checkboxes = [
             frame.check_nota_fiscal_var.get(),
             frame.check_boleto_var.get(),
@@ -82,15 +85,24 @@ class ChecklistController:
 
         if all(checkboxes):
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS_CONCLUIDO)
-            escolha = exibir_mensagem("Finalizar?", "Deseja finalizar a carga?", "info", opcao_1="Sim", opcao_2="Não")
+
+            escolha = exibir_mensagem(
+                "Finalizar?",
+                "Deseja finalizar a carga?",
+                "info",
+                opcao_1="Sim",
+                opcao_2="Não"
+            )
+
             if escolha == "Sim":
                 self.remover_carga(frame)
             else:
                 frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
                 checkbox_var.set(0)
+
+                dados = self.coletar_dados(frame)
+                self.model.editar_carga_pendente(dados)
         else:
-            dados = self.coletar_dados(frame)
-            self.model.editar_carga_pendente(dados)
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
 
 
