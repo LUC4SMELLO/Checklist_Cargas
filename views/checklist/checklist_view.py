@@ -113,7 +113,7 @@ class ChecklistView(ctk.CTkFrame):
             text_color=COR_TEXTO,
             fg_color=COR_BOTAO,
             hover_color=COR_HOVER_BOTAO,
-            width=136
+            width=133
             )
         self.botao_cargas_pendentes.configure(fg_color=COR_BOTAO_SELECIONADO)
         self.botao_cargas_pendentes.grid(row=0, column=0)
@@ -126,7 +126,7 @@ class ChecklistView(ctk.CTkFrame):
             text_color=COR_TEXTO,
             fg_color=COR_BOTAO,
             hover_color=COR_HOVER_BOTAO,
-            width=136
+            width=133
             )
         self.botao_cargas_concluidas.grid(row=0, column=1, padx=(5, 0))
 
