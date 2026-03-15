@@ -75,7 +75,7 @@ class ChecklistView(ctk.CTkFrame):
 
         ctk.CTkLabel(self.toolbar_frame, text="Número Carga:", font=FONTE_LABEL, text_color=COR_TEXTO).grid(row=0, column=0, padx=(40, 0), pady=(15, 0), sticky="e")
         self.entry_numero_carga = ctk.CTkEntry(self.toolbar_frame, font=FONTE_TEXTO, text_color=COR_TEXTO, width=100, height=30, corner_radius=2)
-        self.entry_numero_carga.grid(row=0, column=1, padx=(10, 0), pady=(15, 0), sticky="w")
+        self.entry_numero_carga.grid(row=0, column=1, padx=(8, 0), pady=(15, 0), sticky="w")
 
         self.icone_mais = ctk.CTkImage(
             light_image=Image.open(ICONS_DIR / "mais_dark.png"),
