@@ -43,7 +43,6 @@ class DBMonitor:
         self.thread.join(timeout=1)
     
     def ignore_next(self, seconds=1):
-        import time
         self.ignore_until = time.time() + seconds
 
     def _worker(self):
