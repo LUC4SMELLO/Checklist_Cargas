@@ -7,7 +7,7 @@ janela = ctk.CTk()
 janela.title("Checklist Cargas")
 janela.geometry("855x540")
 janela.resizable(False, False)
-janela.iconbitmap(ICONS_DIR / "checklist_cargas_icon.ico")
+janela.iconbitmap(default=str(ICONS_DIR / "checklist_cargas_icon.ico"))
 
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("dark-blue")
