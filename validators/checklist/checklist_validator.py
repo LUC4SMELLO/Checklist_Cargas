@@ -4,7 +4,7 @@ def validar_checklist(numero_carga: dict):
         return {
             "sucesso": False,
             "titulo": "Erro",
-            "mensagem": f"O campo 'Número da Carga' é obrigatório!",
+            "mensagem": f"O número da carga é obrigatório!",
             "icone": "cancel"
         }
         
