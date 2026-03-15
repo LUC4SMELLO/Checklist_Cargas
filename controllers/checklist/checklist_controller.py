@@ -19,6 +19,10 @@ class ChecklistController:
 
     def set_view(self, view):
         self.view = view
+        print(self.view.master)
+
+    def set_monitor(self, monitor):
+        self.monitor = monitor
 
 
     def coletar_dados(self, frame):
@@ -55,6 +59,7 @@ class ChecklistController:
         self.view.frames_carga.append(frame)
 
         dados = self.coletar_dados(frame)
+        self.monitor.ignore_next()
         self.model.inserir_carga_pendente(dados)
 
         self.limpar_formulario()
@@ -65,6 +70,7 @@ class ChecklistController:
             self.view.frames_carga.remove(frame)
 
         dados = self.coletar_dados(frame)
+        self.monitor.ignore_next()
         self.model.excluir_carga_pendente(dados)
         frame.destroy()
 
@@ -106,6 +112,7 @@ class ChecklistController:
                 checkbox_var.set(0)
 
                 dados = self.coletar_dados(frame)
+                self.monitor.ignore_next()
                 self.model.editar_carga_pendente(dados)
         else:
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
