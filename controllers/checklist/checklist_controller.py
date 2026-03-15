@@ -16,10 +16,10 @@ class ChecklistController:
     def __init__(self, model):
         self.view = None
         self.model = model
+        self.tab_atual = "pendente"
 
     def set_view(self, view):
         self.view = view
-        print(self.view.master)
 
     def set_monitor(self, monitor):
         self.monitor = monitor
@@ -30,7 +30,7 @@ class ChecklistController:
 
         dados = {
             "data": data,
-            "numero_carga": frame.label_carga.cget("text").strip(),
+            "numero_carga": frame.label_carga.cget("text"),
             "nota_fiscal": frame.check_nota_fiscal_var.get(),
             "boleto": frame.check_boleto_var.get(),
             "acerto": frame.check_acerto_var.get(),
@@ -60,18 +60,19 @@ class ChecklistController:
 
         dados = self.coletar_dados(frame)
         self.monitor.ignore_next()
-        self.model.inserir_carga_pendente(dados)
+        self.model.inserir_carga(dados)
 
         self.limpar_formulario()
         self.atualizar_numero_total_cargas()
 
-    def remover_carga(self, frame):
+    def remover_carga(self, frame, excluir: bool):
         if frame in self.view.frames_carga:
             self.view.frames_carga.remove(frame)
 
         dados = self.coletar_dados(frame)
         self.monitor.ignore_next()
-        self.model.excluir_carga_pendente(dados)
+        if excluir:
+            self.model.excluir_carga(dados)
         frame.destroy()
 
         self.atualizar_numero_total_cargas()
@@ -82,7 +83,8 @@ class ChecklistController:
     def verificar_checkbox(self, frame, checkbox_var):
 
         dados = self.coletar_dados(frame)
-        self.model.editar_carga_pendente(dados)
+        self.monitor.ignore_next()
+        self.model.editar_carga(dados)
 
         checkboxes = [
             frame.check_nota_fiscal_var.get(),
@@ -105,15 +107,15 @@ class ChecklistController:
 
             if escolha == "Sim":
                 dados = self.coletar_dados(frame)
-                self.model.inserir_carga_concluida(dados)
-                self.remover_carga(frame)
+                self.model.concluir_carga(dados)
+                self.remover_carga(frame, False)
             else:
                 frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
                 checkbox_var.set(0)
 
                 dados = self.coletar_dados(frame)
                 self.monitor.ignore_next()
-                self.model.editar_carga_pendente(dados)
+                self.model.editar_carga(dados)
         else:
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS)
 
@@ -154,11 +156,13 @@ class ChecklistController:
 
         tab_selecionada = botao_clicado.cget("text")
         if tab_selecionada == "Pendentes":
-            self.inicializar_cargas(cargas="pendentes")
+            self.tab_atual = "pendente"
+            self.inicializar_cargas(cargas="pendente")
             self.view.entry_numero_carga.configure(state="normal")
             self.view.botao_adicionar_carga.configure(state="normal")
         else:
-            self.inicializar_cargas(cargas="concluidas")
+            self.tab_atual = "concluido"
+            self.inicializar_cargas(cargas="concluido")
             self.view.entry_numero_carga.configure(state="readonly")
             self.view.botao_adicionar_carga.configure(state="disabled")
 
@@ -168,24 +172,29 @@ class ChecklistController:
     #     CARREGAMENTO CARGAS PENDENTES
     # -------------------------------------
 
-    def inicializar_cargas(self, cargas: Literal["pendentes", "concluidas"]):
+    def on_db_change(self):
+
+        tab = self.tab_atual
+
+        if tab == "pendente":
+            self.inicializar_cargas(cargas="pendente")
+        else:
+            self.inicializar_cargas(cargas="concluido")
+
+    def inicializar_cargas(self, cargas: Literal["pendente", "concluido"]):
         self.limpar_container_cargas()
 
-        if cargas == "pendentes":
-            registros = self.model.carregar_cargas_pendentes()
-        else:
-            registros = self.model.carregar_cargas_concluidas()
+        tipo = "pendente" if cargas == "pendente" else "concluido"
+        registros = self.model.carregar_cargas(tipo)
 
         if registros:
             for dados in registros:
                 frame = self.view.criar_frame_carga()
                 self._preencher_frame(frame, dados, cargas)
-        
-        self.atualizar_numero_total_cargas()
     
     def _preencher_frame(self, frame, dados, cargas):
 
-        if cargas == "concluidas":
+        if cargas == "concluido":
             frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS_CONCLUIDO)
             frame.check_nota_fiscal.configure(state="disabled")
             frame.check_boleto.configure(state="disabled")

@@ -6,7 +6,7 @@ from models.checklist.checklist_model import ChecklistModel
 
 from services.monitor import DBMonitor
 
-from constants.banco_dados import BANCO_DADOS_CARGAS_PENDENTES
+from constants.banco_dados import BANCO_DADOS_CARGAS
 
 
 def fechar():
@@ -25,14 +25,14 @@ if __name__ == "__main__":
 
     controller.set_view(view)
     controller.obter_proximo_dia_util()
-    controller.inicializar_cargas(cargas="pendentes")
+    controller.inicializar_cargas(cargas="pendente")
 
     view.grid(row=0, column=0, sticky="nsew")
 
     # MONITORAMENTO DO BANCO DE DADOS
     monitor = DBMonitor(
-        BANCO_DADOS_CARGAS_PENDENTES,
-        lambda: controller.inicializar_cargas(cargas="pendentes"),
+        BANCO_DADOS_CARGAS,
+        controller.on_db_change,
         janela
     )
 

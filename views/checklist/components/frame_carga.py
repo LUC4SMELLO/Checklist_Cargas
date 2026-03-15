@@ -124,7 +124,7 @@ class FrameCarga(ctk.CTkFrame):
             self,
             image=self.icone_lixeira,
             text="",
-            command=lambda: controller.remover_carga(self),
+            command=lambda: controller.remover_carga(self, True),
             width=20,
             height=20,
             fg_color="transparent",
