@@ -191,6 +191,8 @@ class ChecklistController:
             for dados in registros:
                 frame = self.view.criar_frame_carga()
                 self._preencher_frame(frame, dados, cargas)
+        
+        self.atualizar_numero_total_cargas()
     
     def _preencher_frame(self, frame, dados, cargas):
 
@@ -212,5 +214,3 @@ class ChecklistController:
         frame.check_mapa_var.set(dados["mapa"])
         frame.check_troca_var.set(dados["troca"])
         frame.check_problema_var.set(dados["problema"])
-        
-        self.atualizar_numero_total_cargas()
