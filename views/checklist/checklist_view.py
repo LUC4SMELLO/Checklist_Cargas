@@ -201,10 +201,10 @@ class ChecklistView(ctk.CTkFrame):
         self.label_total_cargas = ctk.CTkLabel(self.footer_frame, text="Total: 0", font=("Segoe UI", 14, "bold"), text_color=COR_TEXTO)
         self.label_total_cargas.grid(row=0, column=0, padx=(40, 0), pady=(5, 0))
 
-    def criar_frame_carga(self):
+    def criar_frame_carga(self, cor_fundo):
         quantidade_cargas = len(self.frames_carga)
 
-        frame = FrameCarga(self.container_cargas, self.controller)
+        frame = FrameCarga(self.container_cargas, self.controller, cor_fundo)
         frame.grid(row=quantidade_cargas + 1, column=0, padx=(5, 0), pady=(5, 0), sticky="ew")
         self.frames_carga.append(frame)
 

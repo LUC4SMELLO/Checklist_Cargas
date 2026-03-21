@@ -204,17 +204,17 @@ class ChecklistController:
         tipo = "pendente" if cargas == "pendente" else "concluido"
         registros = self.model.carregar_cargas(tipo)
 
+        cor_fundo = COR_FUNDO_FRAME_CARGAS if tipo == "pendente" else COR_FUNDO_FRAME_CARGAS_CONCLUIDO
         if registros:
             for dados in registros:
-                frame = self.view.criar_frame_carga()
+                frame = self.view.criar_frame_carga(cor_fundo)
                 self._preencher_frame(frame, dados, cargas)
-        
+
         self.atualizar_numero_total_cargas()
     
     def _preencher_frame(self, frame, dados, cargas):
 
         if cargas == "concluido":
-            frame.configure(fg_color=COR_FUNDO_FRAME_CARGAS_CONCLUIDO)
             frame.check_nota_fiscal.configure(state="disabled")
             frame.check_boleto.configure(state="disabled")
             frame.check_acerto.configure(state="disabled")

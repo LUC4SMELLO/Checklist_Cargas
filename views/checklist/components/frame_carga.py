@@ -14,8 +14,8 @@ from constants.cores import (
 
 
 class FrameCarga(ctk.CTkFrame):
-    def __init__(self, master, controller):
-        super().__init__(master, height=90, border_width=0, corner_radius=0, fg_color=COR_FUNDO_FRAME_CARGAS)
+    def __init__(self, master, controller, cor_fundo=COR_FUNDO_FRAME_CARGAS):
+        super().__init__(master, height=90, border_width=0, corner_radius=0, fg_color=cor_fundo)
 
         self.controller = controller
 
