@@ -29,6 +29,8 @@ if __name__ == "__main__":
 
     view.grid(row=0, column=0, sticky="nsew")
 
+    controller.binds.configurar_binds()
+
     # MONITORAMENTO DO BANCO DE DADOS
     monitor = DBMonitor(
         BANCO_DADOS_CARGAS,

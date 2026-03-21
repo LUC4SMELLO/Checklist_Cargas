@@ -4,6 +4,8 @@ from typing import Literal
 from datetime import datetime, timedelta
 import holidays
 
+from controllers.checklist.checklist_bind_controller import ChecklistBindController
+
 from views.checklist.components.frame_carga import FrameCarga
 
 from validators.checklist.checklist_validator import validar_checklist
@@ -16,10 +18,12 @@ class ChecklistController:
     def __init__(self, model):
         self.view = None
         self.model = model
+        self.binds = ChecklistBindController(self)
         self.tab_atual = "pendente"
 
     def set_view(self, view):
         self.view = view
+        self.binds.set_view(view)
 
     def set_monitor(self, monitor):
         self.monitor = monitor
