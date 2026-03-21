@@ -13,3 +13,5 @@ FONTE_BOTAO_PRINCIPAL = ("Segoe UI", 16, "bold")
 FONTE_BOTAO_SECUNDARIO = ("Segoe UI", 14, "bold")
 
 FONTE_LISTBOX = ("Segoe UI", 13)
+
+FONTE_MESSAGEBOX = ("Segoe UI", 16)

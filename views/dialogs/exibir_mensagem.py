@@ -1,7 +1,7 @@
 from CTkMessagebox import CTkMessagebox
 from typing import Literal
 
-from constants.textos import FONTE_TEXTO
+from constants.textos import FONTE_MESSAGEBOX
 from constants.cores import COR_TEXTO, COR_BOTAO, COR_TEXTO_BOTAO, COR_HOVER_BOTAO
 
 
@@ -39,12 +39,14 @@ def exibir_mensagem(
         icon=icone,
         width=350,
         height=50,
-        font=FONTE_TEXTO,
+        font=FONTE_MESSAGEBOX,
         text_color=COR_TEXTO,
         button_color=COR_BOTAO,
         cancel_button_color=COR_BOTAO,
         button_text_color=COR_TEXTO_BOTAO,
         button_hover_color=COR_HOVER_BOTAO,
+        button_width=110,
+        button_height=15,
         option_1=opcao_1,
         option_2=opcao_2,
         option_3=opcao_3,
