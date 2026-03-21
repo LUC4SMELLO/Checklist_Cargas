@@ -180,7 +180,26 @@ class ChecklistModel:
         
         except Exception as erro:
             print("Erro ao carregar cargas pendentes: ", erro)
-            return ["erro caralho"]
+            return []
+        
+        finally:
+            if conexao:
+                conexao.close()
+
+    def reiniciar_cargas(self):
+
+        conexao = None
+        try:
+            conexao = conectar_banco_dados_cargas()
+            cursor = conexao.cursor()
+
+            cursor.execute(f"DELETE FROM {TABELA_CARGAS}")
+
+            conexao.commit()
+
+        except Exception as erro:
+            print("Erro ao reiniciar cargas: ", erro)
+            return []
         
         finally:
             if conexao:

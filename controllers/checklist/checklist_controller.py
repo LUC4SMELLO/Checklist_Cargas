@@ -132,6 +132,19 @@ class ChecklistController:
         for widget in self.view.container_cargas.winfo_children():
             widget.destroy()
 
+    def reiniciar_cargas(self):
+        escolha = exibir_mensagem(
+            "Reiniciar?",
+            "Deseja reiniciar todas as cargas?",
+            "warning",
+            opcao_1="Sim",
+            opcao_2="Não"
+        )
+        if escolha == "Sim":
+            self.model.reiniciar_cargas()
+        else:
+            return
+
 
     def obter_proximo_dia_util(self):
         feriados_br = holidays.BR()

@@ -100,6 +100,24 @@ class ChecklistView(ctk.CTkFrame):
 
         ctk.CTkFrame(self.toolbar_frame, height=2, fg_color=COR_LINHAS).grid(row=1, column=0, padx=(20, 20), pady=(15, 0), sticky="ew", columnspan=6)
 
+        self.icone_reiniciar = ctk.CTkImage(
+            light_image=Image.open(ICONS_DIR / "reiniciar_dark.png"),
+            dark_image=Image.open(ICONS_DIR / "reiniciar_dark.png"),
+            size=(22, 22)
+        )
+        self.botao_reiniciar = ctk.CTkButton(
+            self.toolbar_frame,
+            image=self.icone_reiniciar,
+            text="",
+            command=self.controller.reiniciar_cargas,
+            width=20,
+            height=30,
+            fg_color=COR_BOTAO,
+            hover_color=COR_HOVER_BOTAO,
+            cursor="hand2"
+        )
+        self.botao_reiniciar.grid(row=1, column=5, padx=(0, 40), pady=(15, 0), sticky="e")
+
         self.tabs_frame = ctk.CTkFrame(self.toolbar_frame, fg_color="transparent", height=30)
         self.tabs_frame.grid(row=1, column=0, padx=(40, 0), pady=(15, 0), columnspan=4)
 
