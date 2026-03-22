@@ -13,6 +13,7 @@ Aplicativo desktop para melhorar o gerenciamento do trabalho e da comunicação 
 
 - Criar checklist de carga.
 - Marcar itens concluídos.
+- Reiniciar todas as cargas.
 - Atualização automática entre máquinas.
 - Interface moderna com CustomTkinter.
 - Integração com banco de dados SQLite.
@@ -42,6 +43,7 @@ project/
 │   └── dialogs/
 │
 ├── .gitignore
+├── DOCS_DBMONITOR.md
 ├── README.md
 │
 └── main.py
@@ -79,7 +81,7 @@ O projeto segue o padrão **MVC (Model-View-Controller)**:
 - **View** → interface gráfica com CustomTkinter.
 - **Controller** → lógica da aplicação.
 
-## Melhorias futuras
+## Melhorias Futuras
 - Sistema de login.
 - Histórico de checklists.
 - Exportação de relatórios.
